@@ -1,2 +1,3 @@
 rootProject.name='AndroidAnnotationDemo'
 include ':app'
+include ':factorycompiler'

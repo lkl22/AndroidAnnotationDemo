@@ -1,0 +1,16 @@
+apply plugin: 'java'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc2'
+    implementation 'com.squareup:javapoet:1.10.0'
+    implementation 'com.squareup:javawriter:2.5.1'
+    compileOnly 'com.google.android:android:4.1.1.4'
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
