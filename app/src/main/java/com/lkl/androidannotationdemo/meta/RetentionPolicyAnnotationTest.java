@@ -4,21 +4,21 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.SOURCE)
-@interface RetentionPolicyAnnotation1{
+@interface RetentionPolicyAnnotation1 {
 
 }
 
 @Retention(RetentionPolicy.CLASS)
-@interface RetentionPolicyAnnotation2{
+@interface RetentionPolicyAnnotation2 {
 
 }
 
 @Retention(RetentionPolicy.RUNTIME)
-@interface RetentionPolicyAnnotation3{
+@interface RetentionPolicyAnnotation3 {
 
 }
 
-@interface RetentionPolicyAnnotation{
+@interface RetentionPolicyAnnotation {
 
 }
 

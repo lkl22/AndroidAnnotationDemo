@@ -7,8 +7,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
 @Inherited //添加可继承元注解
+@Retention(RetentionPolicy.RUNTIME)
 @interface FilterPaths {
     FilterPath[] value();
 }

@@ -16,8 +16,7 @@ class TypeParameterClass<@ElementTypeAnnotation T> {
     List<@ElementTypeAnnotation ? extends String> d;
     List<? extends @ElementTypeAnnotation String> e;
 
-    @ElementTypeAnnotation
-    TypeParameterClass(@ElementTypeAnnotation T b) {
+    @ElementTypeAnnotation TypeParameterClass(@ElementTypeAnnotation T b) {
 
     }
 
@@ -30,8 +29,8 @@ class TypeParameterClass<@ElementTypeAnnotation T> {
         new @ElementTypeAnnotation String("/usr/bin");
 
         //用于强制转换和instanceof检查,注意这些注解中用于外部工具，它们不会对类型转换或者instanceof的检查行为带来任何影响。
-        String path=(@ElementTypeAnnotation String)b;
-        if(b instanceof @ElementTypeAnnotation String){
+        String path = (@ElementTypeAnnotation String) b;
+        if (b instanceof @ElementTypeAnnotation String) {
 
         }
         return null;
@@ -69,7 +68,7 @@ enum LanguageEnum {
 
     //自定义方法
     @ElementTypeAnnotation
-    public String getLanguage(){
+    public String getLanguage() {
         return language;
     }
 }

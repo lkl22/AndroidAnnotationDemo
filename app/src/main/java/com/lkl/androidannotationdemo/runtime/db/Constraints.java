@@ -13,8 +13,10 @@ import java.lang.annotation.Target;
 public @interface Constraints {
     //判断是否作为主键约束
     boolean primaryKey() default false;
+
     //判断是否允许为null
     boolean allowNull() default false;
+
     //判断是否唯一
     boolean unique() default false;
 }

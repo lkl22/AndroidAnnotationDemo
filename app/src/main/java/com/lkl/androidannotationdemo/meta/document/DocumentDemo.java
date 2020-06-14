@@ -4,6 +4,6 @@ package com.lkl.androidannotationdemo.meta.document;
 @DocumentA
 @DocumentB
 public class DocumentDemo {
-    public void A(){
+    public void A() {
     }
 }
