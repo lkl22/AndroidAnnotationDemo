@@ -38,7 +38,7 @@
 
 ```
 特别提醒:如果没有进入调试,但又出现了远程调试端口已连接
-那么你需要删除app工程的build/generated/source/apt/debug/*中,编译出来的文件
+那么你需要删除app工程的build/generated/source/apt/debug/*或者build/generated/ap_generated_sources/debug/out/*中,编译出来的文件
 ```
 
 **先启动java的编译，然后再启动remote调试**

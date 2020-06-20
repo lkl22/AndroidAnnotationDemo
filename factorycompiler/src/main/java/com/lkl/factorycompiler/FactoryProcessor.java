@@ -130,7 +130,7 @@ public class FactoryProcessor extends AbstractProcessor {
                 printMessage(annotatedElement, "Only classes can be annotated with @%s", Factory.class.getSimpleName());
                 return true;
             }
-            // 因为我们已经知道它是ElementKind.CLASS类型，所以可以直接强制转换，转换成TypeElement类型，TypeElement就是值接口或者类
+            // 因为我们已经知道它是ElementKind.CLASS类型，所以可以直接强制转换，转换成TypeElement类型，TypeElement就是指接口或者类
             TypeElement typeElement = (TypeElement) annotatedElement;
 
             try {
@@ -158,6 +158,7 @@ public class FactoryProcessor extends AbstractProcessor {
         try {
             for (FactoryGroupedClasses factoryClass : mFactoryGroupedClasses.values()) {
                 factoryClass.generateCode(mElementUtils, mFiler);
+                factoryClass.poetGenerateCode(mElementUtils, mFiler);
             }
 
         } catch (IOException e) {

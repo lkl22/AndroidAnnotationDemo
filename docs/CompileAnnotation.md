@@ -78,7 +78,7 @@ Messager	|用于输出，类似printf函数
 ```
 
 #### 生成文件
-生成文件，通常是生成一个java文件。直接调用帮助类Filer的createSourceFile()函数就可以创建一个java文件。之后就是在这个java文件里面写入我们需要的内容了。为了提高大家的开发效率推荐两个写java源文件的开源库FileWriter和JavaPoet。
+生成文件，通常是生成一个java文件。直接调用帮助类Filer的createSourceFile()函数就可以创建一个java文件。之后就是在这个java文件里面写入我们需要的内容了。为了提高大家的开发效率推荐两个写java源文件的开源库JavaWriter和[JavaPoet](https://github.com/BlankLun/javapoet)。
 
 ## [代码调试](./CompileAnnotationDebug.md)
 

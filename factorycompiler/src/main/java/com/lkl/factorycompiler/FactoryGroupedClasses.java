@@ -1,5 +1,9 @@
 package com.lkl.factorycompiler;
 
+import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeSpec;
 import com.squareup.javawriter.JavaWriter;
 
 import java.io.IOException;
@@ -91,6 +95,45 @@ public class FactoryGroupedClasses {
         jw.endMethod();
         jw.endType();
         jw.close();
+    }
+
+    /**
+     * 生成java源文件代码
+     */
+    public void poetGenerateCode(Elements elementUtils, Filer filer) throws IOException {
+        TypeElement superClassName = elementUtils.getTypeElement(mQualifiedClassName);
+
+        ClassName superClass = ClassName.get(superClassName);
+        MethodSpec.Builder createBuilder = MethodSpec.methodBuilder("create")
+                .addModifiers(Modifier.PUBLIC)
+                .returns(superClass)
+                .addParameter(String.class, "id")
+                .beginControlFlow("if ($L == null)", "id")
+                .addStatement("throw new $T(\"id is null!\")", IllegalArgumentException.class)
+                .endControlFlow();
+
+
+        for (FactoryAnnotatedClass item : mItemsMap.values()) {
+            createBuilder.beginControlFlow("if (\"%s\".equals(id))", item.getId());
+            createBuilder.addStatement("return new $T()", ClassName.get(item.getTypeElement()));
+            createBuilder.endControlFlow();
+        }
+
+        createBuilder.addStatement("throw new $T(\"Unknown id = \" + id)", IllegalArgumentException.class);
+
+        // 创建类
+        String factoryClassName = superClassName.getSimpleName() + "1" + SUFFIX;
+        TypeSpec factoryClass = TypeSpec.classBuilder(factoryClassName)
+                .addModifiers(Modifier.PUBLIC)
+                .addMethod(createBuilder.build())
+                .build();
+
+        // 创建javaFile
+        PackageElement pkg = elementUtils.getPackageOf(superClassName);
+        JavaFile javaFile = JavaFile.builder(pkg.getQualifiedName().toString(), factoryClass)
+                .build();
+
+        javaFile.writeTo(filer);
     }
 
 }
