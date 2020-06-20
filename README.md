@@ -50,3 +50,9 @@ Java 语言中的类、方法、变量、参数和包等都可以被标注。和
 [Android 自定义注解(Annotation)](https://blog.csdn.net/wuyuxing24/article/details/81139846)
 
 [jadx反编译工具](https://github.com/BlankLun/jadx)
+
+[javapoet](https://github.com/BlankLun/javapoet)
+
+[AppInit](https://github.com/BlankLun/AppInit)
+
+[WMRouter](https://github.com/BlankLun/WMRouter)
