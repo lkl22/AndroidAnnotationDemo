@@ -1,6 +1,6 @@
 # 编译时注解
 ## 声明注解
-1. 通过@Retention(RetentionPolicy.TYPE)元注解确定我们注解是在编译的时候使用。
+1. 通过@Retention(RetentionPolicy.CLASS)元注解确定我们注解是在编译的时候使用。
 2. 通过@Target确定我们注解是作用在什么上面的(变量、函数、类等)。
 3. 确定我们注解需要的参数。
 ## 编写注解处理器
@@ -25,9 +25,20 @@ AbstractProcessor函数|说明
 void init(ProcessingEnvironment processingEnvironment)|每个Annotation Processor必须有一个空的构造函数。编译期间，init()会自动被注解处理工具调用，并传入ProcessingEnvironment参数，通过该参数可以获取到很多有用的工具类（Element，Filer，Messager等）
 Set<String> getSupportedAnnotationTypes()|用于指定自定义注解处理器(Annotation Processor)是注册给哪些注解的(Annotation)，注解(Annotation)指定必须是完整的包名+类名
 SourceVersion getSupportedSourceVersion()|用于指定你的java版本，一般返回：SourceVersion.latestSupported()
-boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment)|Annotation Processor扫描出的结果会存储进roundEnvironment中，可以在这里获取到注解内容，编写你的操作逻辑。注意:process()函数中不能直接进行异常抛出,否则程序会异常崩溃
+boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment)|Annotation Processor扫描出的结果会存储进roundEnvironment中，可以在这里获取到注解内容，编写你的操作逻辑。注意:process()函数中不能直接进行异常抛出,否则程序会异常崩溃。如果返回 true，则这些注解已声明并且不要求后续 Processor 处理它们；如果返回 false，则这些注解未声明并且可能要求后续 Processor 处理它们。
 
 注解处理器的核心是process()方法(需要重写AbstractProcessor类的该方法)，而process()方法的核心是Element元素。Element 代表程序的元素，在注解处理过程中，编译器会扫描所有的Java源文件，并将源码中的每一个部分都看作特定类型的Element。它可以代表包、类、接口、方法、字段等多种元素种类。
+
+在Java 7以后，你也可以使用注解来代替getSupportedAnnotationTypes()和getSupportedSourceVersion()
+
+```java
+@AutoService(Processor.class)
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
+@SupportedAnnotationTypes({
+        "com.lkl.factorycompiler.Factory"
+})
+public class FactoryProcessor extends AbstractProcessor {
+```
 
 Element子类	|说明
 ---|---
@@ -36,6 +47,8 @@ VariableElement	|字段、enum常量、方法或构造方法参数、局部变�
 ExecutableElement	|类或接口的方法、构造方法，或者注解类型元素
 PackageElement	|包元素
 TypeParameterElement	|类、接口、方法或构造方法元素的泛型参数
+
+TypeElement并不包含类本身的信息。你可以从TypeElement中获取类的名字，但是你获取不到类的信息，例如它的父类。这种信息需要通过TypeMirror获取。你可以通过调用elements.asType()获取元素的TypeMirror。
 
 Element基类方法	|说明
 ---|---
