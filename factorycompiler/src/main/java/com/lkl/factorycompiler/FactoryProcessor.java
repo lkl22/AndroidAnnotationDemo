@@ -25,42 +25,41 @@ import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
 /**
- 工厂模式自动生成代码
- 定义一个父类
- public interface Meal {
- float getPrice();
- }
- 子类CalzonePizza 实现了父类Meal
- @Factory(id = "CalzonePizza", type = Meal.class)
- public class CalzonePizza implements Meal {
- @Override
- public float getPrice() {
- return 0;
- }
- }
- 子类MargheritaPizza 实现了父类Meal
- @Factory(id = "MargheritaPizza", type = Meal.class)
- public class MargheritaPizza implements Meal {
- @Override
- public float getPrice() {
- return 0;
- }
- }
- 最终我们要自动生成文件 MealFactory
- public class MealFactory {
- public Meal create(String id) {
- if (id == null) {
- throw new IllegalArgumentException("id is null!");
- }
- if ("MargheritaPizza".equals(id)) {
- return new com.tuacy.annotationlearning.annotation.abstractprocessor.MargheritaPizza();
- }
- if ("CalzonePizza".equals(id)) {
- return new com.tuacy.annotationlearning.annotation.abstractprocessor.CalzonePizza();
- }
- throw new IllegalArgumentException("Unknown id = " + id);
- }
- }
+ * 工厂模式自动生成代码
+ * 定义一个父类
+ * public interface Meal {
+ * float getPrice();
+ * }
+ * 子类CalzonePizza 实现了父类Meal
+ *
+ * @Factory(id = "CalzonePizza", type = Meal.class)
+ * public class CalzonePizza implements Meal {
+ * @Override public float getPrice() {
+ * return 0;
+ * }
+ * }
+ * 子类MargheritaPizza 实现了父类Meal
+ * @Factory(id = "MargheritaPizza", type = Meal.class)
+ * public class MargheritaPizza implements Meal {
+ * @Override public float getPrice() {
+ * return 0;
+ * }
+ * }
+ * 最终我们要自动生成文件 MealFactory
+ * public class MealFactory {
+ * public Meal create(String id) {
+ * if (id == null) {
+ * throw new IllegalArgumentException("id is null!");
+ * }
+ * if ("MargheritaPizza".equals(id)) {
+ * return new com.tuacy.annotationlearning.annotation.abstractprocessor.MargheritaPizza();
+ * }
+ * if ("CalzonePizza".equals(id)) {
+ * return new com.tuacy.annotationlearning.annotation.abstractprocessor.CalzonePizza();
+ * }
+ * throw new IllegalArgumentException("Unknown id = " + id);
+ * }
+ * }
  */
 // https://blog.csdn.net/github_35180164/article/details/52055994
 //@AutoService(Processor.class)
@@ -69,19 +68,19 @@ public class FactoryProcessor extends AbstractProcessor {
     /**
      * 用来处理TypeMirror的工具类
      */
-    private Types                              mTypeUtils;
+    private Types mTypeUtils;
     /**
      * 用于创建文件
      */
-    private Filer                              mFiler;
+    private Filer mFiler;
     /**
      * 用于打印信息
      */
-    private Messager                           mMessager;
+    private Messager mMessager;
     /**
      * 用来处理Element的工具类
      */
-    private Elements                           mElementUtils;
+    private Elements mElementUtils;
     /**
      * 一个工程里面肯定有多个工厂
      */

@@ -9,11 +9,11 @@ public class FactoryAnnotatedClass {
     // 添加注解的类(TypeElement表示是一个类或者接口)
     private TypeElement mAnnotatedClassElement;
     // Factory type参数对应的类的路径+名字(父类的完整路径)
-    private String      mQualifiedSuperClassName;
+    private String mQualifiedSuperClassName;
     // Factory type参数对应的类的名字
-    private String      mSimpleTypeName;
+    private String mSimpleTypeName;
     // Factory id参数
-    private String      mId;
+    private String mId;
 
     public FactoryAnnotatedClass(TypeElement classElement) throws IllegalArgumentException {
         this.mAnnotatedClassElement = classElement;

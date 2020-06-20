@@ -30,7 +30,7 @@ public class FactoryGroupedClasses {
     /**
      * 父类的完整路径
      */
-    private String                             mQualifiedClassName;
+    private String mQualifiedClassName;
     /**
      * 同一个工程里面所有
      */
